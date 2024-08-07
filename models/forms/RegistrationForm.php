@@ -31,7 +31,7 @@ class RegistrationForm extends Model
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             [['email', 'password', 'repeatPassword'], 'required'],
-            ['email', 'unique', 'targetClass' => '\app\models\users\Users   ', 'message' => 'This email has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\app\models\users\Users', 'message' => 'This email has already been taken.'],
             ['password', 'validatePassword'],
         ];
     }
@@ -64,6 +64,8 @@ class RegistrationForm extends Model
             $user->email = $this->email;
             $user->pass = $user->setPassword($this->password);
             $user->role = Users::ROLE_USER;
+            $user->save();
+            d($user->getErrors());
             if ($user->save()) {
                 \Yii::$app->getSession()->setFlash('success', 'successfully got on to the payment page');
                 return true;

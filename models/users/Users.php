@@ -80,7 +80,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['role'], 'integer'],
             [['family', 'name', 'surname', 'email'], 'string', 'max' => 255],
-            [['pass'], 'string', 'max' => 40],
+            [['pass'], 'string', 'max' => 60],
         ];
     }
 

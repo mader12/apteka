@@ -1,20 +1,22 @@
-let count = {};
+// let count = 0;
 let data = {};
-let keyName = 'products';
 function send(pharma_id, id) {
     data.pharma_id = pharma_id;
     data.id = id;
-    getItemId(data);
 
+    localStorage.setItem(localStorage.length.toString(), JSON.stringify(data));
 }
 
-// Убираю object Object из localStorage
-localStorage.setItem(this.keyName, JSON.stringify(count));
-const di = localStorage.getItem(this.keyName);
-id = JSON.parse(di);
+$(document).ready(function() {
+    getBasket();
+});
 
-// Добавление товара в корзину
-const getItemId = id => {
+function getBasket() {
+    let basketCount = localStorage.getItem('count');
+    for (let i=0; i <= basketCount; i++) {
 
-    console.log(localStorage.setItem(this.keyName, id));
-};
+        console.log(JSON.stringify(localStorage));
+        // console.log(localStorage.length);
+    }
+}
+
