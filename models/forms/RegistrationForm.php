@@ -2,7 +2,7 @@
 
 namespace app\models\forms;
 
-use app\models\Users;
+use app\models\users\Users;
 use yii\base\Model;
 
 /**
@@ -31,7 +31,7 @@ class RegistrationForm extends Model
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             [['email', 'password', 'repeatPassword'], 'required'],
-            ['email', 'unique', 'targetClass' => '\app\models\Users', 'message' => 'This email has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\app\models\users\Users   ', 'message' => 'This email has already been taken.'],
             ['password', 'validatePassword'],
         ];
     }
