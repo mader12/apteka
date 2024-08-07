@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\users;
 
 use Yii;
 
@@ -67,10 +67,9 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return null;
     }
 
-
     public function setPassword ($password) {
 
-        return sha1($password);
+        return Yii::$app->security->generatePasswordHash($password);
     }
 
     /**
@@ -97,6 +96,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'surname' => 'Surname',
             'email' => 'E Mail',
             'pass' => 'Pass',
+            'pass' => 'Pass',
             'role' => 'Role',
         ];
     }
@@ -119,12 +119,12 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->pass === sha1($password);
+        return $this->pass === Yii::$app->security->generatePasswordHash($password);
     }
 
 
     public static function findByEmail($email)
     {
-        return static::find()->where('email=:email', [":email"=>$email])->one();
+        return static::find()->where(['email' => $email])->one();
     }
 }

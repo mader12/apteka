@@ -37,16 +37,14 @@ $this->registerJsFile('@web/js/main.js', ['depends' => [\yii\web\JqueryAsset::cl
         'brandUrl' => Yii::$app->homeUrl,
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Магазин', 'url' => ['/site/index']],
             ['label' => 'Корзина', 'url' => ['/site/basket']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Оформление', 'url' => ['/site/send']],
-
-            ['label' => 'Админ_Пользователи', 'url' => ['/admin/']],
-            ['label' => 'Админ_Заказы', 'url' => ['/admin/orders']],
+            Yii::$app->user->identity->role == \app\models\users\Users::ROLE_ADMINISTRATOR ?
+            ['label' => 'Админ', 'url' => ['/admin/']] : '',
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
                 : '<li class="nav-item">'

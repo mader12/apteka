@@ -2,9 +2,8 @@
 
 namespace app\modules\reports\controllers;
 
-use app\models\BasketOrder;
 use app\models\DrugsSku;
-use app\models\Orders;
+use app\models\orders\BasketOrder;
 use app\modules\reports\helpers\Excel;
 use app\modules\reports\helpers\Word;
 use yii\web\Controller;

@@ -41,7 +41,6 @@ $this->registerJsFile('@web/js/main.js', ['depends' => [\yii\web\JqueryAsset::cl
         'options' => ['class' => 'navbar-nav'],
         'items' => [
 //
-//          ['label' => 'qwe', 'url' => ['/site/send']],
             ['label' => 'Пользователи', 'url' => ['/admin/']],
             ['label' => 'Заказы', 'url' => ['/admin/orders']],
             Yii::$app->user->isGuest

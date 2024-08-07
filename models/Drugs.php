@@ -6,6 +6,7 @@ use Yii;
 
 /**
  * This is the model class for table "drugs".
+ * Справочник препаратов
  *
  * @property int $id
  * @property string|null $trade_name
@@ -42,7 +43,7 @@ class Drugs extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'trade_name' => 'Trade Name',
+            'trade_name' => 'Мировое название препаратаame',
             'word_names' => 'Word Names',
         ];
     }

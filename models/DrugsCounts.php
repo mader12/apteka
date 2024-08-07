@@ -6,6 +6,7 @@ use Yii;
 
 /**
  * This is the model class for table "drugs_counts".
+ * хранит остатки
  *
  * @property int $drug_sku_id
  * @property int $pharma_id
@@ -43,8 +44,8 @@ class DrugsCounts extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'drug_sku_id' => 'Drug Sku ID',
-            'pharma_id' => 'Pharma ID',
+            'drug_sku_id' => 'Sku ID Препарата',
+            'pharma_id' => 'ID Аптеки',
         ];
     }
 

@@ -6,6 +6,7 @@ use Yii;
 
 /**
  * This is the model class for table "indicators".
+ * Справочник описания препаратов
  *
  * @property int $id
  * @property string|null $value
@@ -40,7 +41,7 @@ class Indicators extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'value' => 'Value',
+            'value' => 'Описание препарата',
         ];
     }
 

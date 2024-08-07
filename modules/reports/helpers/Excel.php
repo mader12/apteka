@@ -2,11 +2,9 @@
 
 namespace app\modules\reports\helpers;
 
-use app\models\Orders;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
-use PhpOffice\PhpSpreadsheet\Style\Color;
 
 class Excel
 {

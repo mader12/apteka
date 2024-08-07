@@ -1,11 +1,17 @@
 <?php
 
-namespace app\models;
+namespace app\models\orders;
 
-use Yii;
+use app\models\Dosages;
+use app\models\Drugs;
+use app\models\DrugsSku;
+use app\models\forms\ReleaseForms;
+use app\models\Pharmacies;
+use app\models\Users;
 
 /**
  * This is the model class for table "basket_orders".
+ * хранит корзины заказов
  *
  * @property int $pharma_id
  * @property int $order_id

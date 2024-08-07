@@ -2,16 +2,15 @@
 
 namespace app\controllers;
 
-use app\models\BasketOrder;
 use app\models\DrugsSku;
 use app\models\Order;
-use app\models\Orders;
+use app\models\orders\BasketOrder;
+use app\models\orders\Orders;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\filters\AjaxFilter;
 
 class ApiController  extends Controller
 {
@@ -53,7 +52,7 @@ class ApiController  extends Controller
     {
         $request = \Yii::$app->request->post();
 
-        $drugs = DrugsSku::find()->where('id=:id', [':id' => $request['id']])
+        $drugs = DrugsSku::find()->where(['id' => $request['id']])
             ->with('drug')
             ->with('dosage')
             ->with('form')

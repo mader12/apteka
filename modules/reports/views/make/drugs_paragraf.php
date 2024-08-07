@@ -1,3 +1,5 @@
+/** @var yii\web\View $this */
+
 <div class="reports-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
     <p>

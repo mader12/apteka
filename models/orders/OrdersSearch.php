@@ -1,10 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\models\orders;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Orders;
 
 /**
  * OrdersSearch represents the model behind the search form of `app\models\Orders`.

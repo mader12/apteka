@@ -2,20 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\BasketOrder;
-use app\models\Drugs;
 use app\models\DrugsSku;
-use app\models\Orders;
-use app\models\RegistrationForm;
+use app\models\forms\LoginForm;
+use app\models\forms\RegistrationForm;
+use app\models\orders\BasketOrder;
 use Yii;
-use yii\base\Action;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -102,6 +98,10 @@ class SiteController extends Controller
      */
     public function actionSend()
     {
+        if (Yii::$app->request->isGet) {
+            return $this->actionBasket();
+        }
+
         $basket = BasketOrder::find()->where(['session_id' => \Yii::$app->session->getId()])
             ->with('drugsSku')
             ->with('order')
@@ -176,24 +176,6 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
     }
 
     /**

@@ -6,7 +6,7 @@ use Yii;
 
 /**
  * This is the model class for table "dosages".
- *
+ * Справочник дозировок
  * @property int $id
  * @property float|null $count
  * @property string|null $name

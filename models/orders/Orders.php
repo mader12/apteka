@@ -1,8 +1,8 @@
 <?php
 
-namespace app\models;
+namespace app\models\orders;
 
-use Yii;
+use app\models\Users;
 
 /**
  * This is the model class for table "orders".

@@ -2,10 +2,11 @@
 
 namespace app\models;
 
-use Yii;
+use app\models\forms\ReleaseForms;
 
 /**
  * This is the model class for table "drugs_sku".
+ * Хранит SKU
  *
  * @property int|null $count
  * @property int $drug_id
@@ -50,11 +51,11 @@ class DrugsSku extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'count' => 'Count',
-            'drug_id' => 'Drug ID',
-            'dosage_id' => 'Dosage ID',
-            'form_id' => 'Form ID',
-            'price' => 'Price',
+            'count' => 'Количество',
+            'drug_id' => 'ID Препарата',
+            'dosage_id' => 'ID Дозировк',
+            'form_id' => 'ID Форма упаковки',
+            'price' => 'Цена',
             'id' => 'ID',
         ];
     }

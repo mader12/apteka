@@ -7,6 +7,8 @@ use Yii;
 /**
  * This is the model class for table "pharmacies".
  *
+ * Список аптек
+ *
  * @property int $id
  * @property string|null $city
  * @property string|null $state
@@ -52,15 +54,15 @@ class Pharmacies extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'city' => 'City',
-            'state' => 'State',
-            'index' => 'Index',
-            'street' => 'Street',
-            'home' => 'Home',
-            'flat' => 'Flat',
-            'corpus' => 'Corpus',
-            'stroenie' => 'Stroenie',
-            'name' => 'Name',
+            'city' => 'Город',
+            'state' => 'Область',
+            'index' => 'Почтовый индекс',
+            'street' => 'Улица',
+            'home' => 'Дом',
+            'flat' => 'Квартира',
+            'corpus' => 'Корпус',
+            'stroenie' => 'Строение',
+            'name' => 'Название аптеки',
         ];
     }
 

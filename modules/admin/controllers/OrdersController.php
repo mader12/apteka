@@ -2,12 +2,14 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Orders;
-use app\models\OrdersSearch;
+use app\models\orders\Orders;
+use app\models\orders\OrdersSearch;
+use app\models\users\Users;
+use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -43,18 +45,10 @@ class OrdersController extends Controller
             ],
         ],
                 'verbs' => [
-            'class' => VerbFilter::class,
-            'actions' => [
-                'logout' => ['post'],
-            ],
-        ],
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
-                        'delete' => ['POST'],
+                        'logout' => ['post'],
                     ],
-                ],
             ]
         ];
     }
@@ -73,6 +67,15 @@ class OrdersController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function beforeAction($action)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->role != Users::ROLE_ADMINISTRATOR) {
+            return $this->goHome();
+        } else {
+            return parent::beforeAction($action);
+        }
     }
 
     /**

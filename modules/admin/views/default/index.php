@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Users;
+use app\models\users\Users;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'surname',
             'email:email',
-            //'pass',
             'role',
             [
                 'class' => ActionColumn::className(),

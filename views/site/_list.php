@@ -1,7 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
-//d($model);
+/** @var yii\web\View $model */
+
 ?>
 <div class="post class-md-4" >
     <h2><?= Html::encode($model->drug->trade_name) ?></h2>

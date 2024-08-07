@@ -1,8 +1,8 @@
 <?php
 
-namespace app\models;
+namespace app\models\forms;
 
-use Yii;
+use app\models\DrugsSku;
 
 /**
  * This is the model class for table "release_forms".

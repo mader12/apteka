@@ -2,10 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\BasketOrder;
-use app\models\Orders;
+use app\models\orders\BasketOrder;
+use app\models\orders\Orders;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 class OrderController extends Controller
