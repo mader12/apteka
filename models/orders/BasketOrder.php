@@ -16,7 +16,6 @@ use app\models\Users;
  * @property int $pharma_id
  * @property int $order_id
  * @property int $drugs_sku_id
- * @property string $session_id
  * @property int $id
  *
  * @property DrugsSku $drugsSku
@@ -39,9 +38,9 @@ class BasketOrder extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pharma_id', 'order_id', 'drugs_sku_id', 'session_id'], 'required'],
+            [['pharma_id', 'order_id', 'drugs_sku_id'], 'required'],
+            [['pharma_id', 'order_id', 'drugs_sku_id'], 'required'],
             [['pharma_id', 'order_id', 'drugs_sku_id'], 'integer'],
-            [['session_id'], 'string', 'max' => 255],
             [['drugs_sku_id'], 'exist', 'skipOnError' => true, 'targetClass' => DrugsSku::class, 'targetAttribute' => ['drugs_sku_id' => 'id']],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::class, 'targetAttribute' => ['order_id' => 'id']],
             [['pharma_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pharmacies::class, 'targetAttribute' => ['pharma_id' => 'id']],
@@ -57,7 +56,6 @@ class BasketOrder extends \yii\db\ActiveRecord
             'pharma_id' => 'Pharma ID',
             'order_id' => 'Order ID',
             'drugs_sku_id' => 'Drugs Sku ID',
-            'session_id' => 'Session ID',
             'id' => 'ID',
         ];
     }

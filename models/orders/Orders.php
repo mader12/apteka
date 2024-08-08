@@ -2,14 +2,14 @@
 
 namespace app\models\orders;
 
-use app\models\Users;
+use app\models\users\Users;
 
 /**
  * This is the model class for table "orders".
  *
  * @property int $id
  * @property string|null $create
- * @property int|null $user_id
+ * @property int $user_id
  *
  * @property Users $user
  */

@@ -1,6 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
+/** @var \yii\data\ActiveDataProvider $dataProvider */
 
 use yii\helpers\Html;
 
@@ -10,26 +11,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <p></p>
 
-    </p>
-    <?=
-    \yii\widgets\ListView::widget([
-        'dataProvider' => $dataProvider,
-        'options' => [
-            'tag' => 'div',
-            'class' => 'row',
-            'id' => false
-        ],
+    <div class="container basket">
+        <div class="row">
 
-        'itemView' => '_list_basket',
+        </div>
+    </div>
 
-        'layout' => "{items}\n{pager}",
-
-    ]);
-    ?>
-    <a type="button" class="btn btn-primary" href="/order/index">купить</a>
-    <br />
+    <a type="button" class="btn btn-primary" id="buy" href="/order/index">
+        Купить</a>
     <br />
     <br />
     <a type="button" class="btn btn-primary" href="/reports/make/index">Отчет о выполненных заказах</a>

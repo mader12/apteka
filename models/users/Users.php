@@ -96,7 +96,6 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'surname' => 'Surname',
             'email' => 'E Mail',
             'pass' => 'Pass',
-            'pass' => 'Pass',
             'role' => 'Role',
         ];
     }
@@ -121,7 +120,6 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->pass === Yii::$app->security->generatePasswordHash($password);
     }
-
 
     public static function findByEmail($email)
     {

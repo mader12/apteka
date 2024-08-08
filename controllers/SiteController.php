@@ -44,6 +44,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
+                    'send' => ['post'],
                 ],
             ],
         ];
@@ -98,9 +99,6 @@ class SiteController extends Controller
      */
     public function actionSend()
     {
-        if (Yii::$app->request->isGet) {
-            return $this->actionBasket();
-        }
 
         $basket = BasketOrder::find()->where(['session_id' => \Yii::$app->session->getId()])
             ->with('drugsSku')
@@ -132,8 +130,9 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goHome();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->goHome();
         }
 
         $model->password = '';
@@ -154,11 +153,12 @@ class SiteController extends Controller
         }
         Yii::$app->response->cookies->add(new \yii\web\Cookie([
             'name' => 'language',
-            'value' => 'zh-CN',
+            'value' => 'ru-RU',
         ]));
         $model = new RegistrationForm();
         if ($model->load(Yii::$app->request->post()) && $model->registration()) {
-            return $this->goBack();
+
+            return $this->goHome();
         }
 
         return $this->render('registration', [

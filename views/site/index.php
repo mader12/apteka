@@ -1,6 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
+/** @var \yii\data\ActiveDataProvider $listDataProvider */
 
 $this->title = 'Аптека';
 
@@ -22,10 +23,8 @@ $this->title = 'Аптека';
                 ],
 
                 'itemView' => '_list',
-                //'layout' => "{pager}\n<div class='container'><div class='row'><div class='col-md-4'>{items}</div></div></div>\n{summary}",
 
                 'layout' => "{items}\n{pager}",
-
                 ]);
             ?>
         </div>
