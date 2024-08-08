@@ -67,7 +67,7 @@ class RegistrationForm extends Model
             $user->save();
             if ($user->save()) {
                 \Yii::$app->user->login($this->getUser(), 3600*24*30);
-                \Yii::$app->getSession()->setFlash('success', 'successfully got on to the payment page');
+                \Yii::$app->getSession()->setFlash('success', 'Вы успешно зарегистрированы.');
                 return true;
             }
             return false;

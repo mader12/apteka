@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Drugs;
 use app\models\DrugsSku;
 use app\models\forms\LoginForm;
 use app\models\forms\RegistrationForm;
@@ -23,19 +24,19 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'login', 'registration'],
+                'only' => ['logout', 'login', 'registration', 'card'],
                 'denyCallback' => function ($rule, $action) {
                     throw new \Exception('У вас нет доступа к этой странице');
                 },
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'card'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['login', 'registration'],
+                        'actions' => ['login', 'registration','card'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -92,30 +93,29 @@ class SiteController extends Controller
         return $this->render('index', ['listDataProvider' => $dataProvider]);
     }
 
-    /**
-     * SEND order.
-     *
-     * @return string
-     */
-    public function actionSend()
-    {
-
-        $basket = BasketOrder::find()->where(['session_id' => \Yii::$app->session->getId()])
-            ->with('drugsSku')
-            ->with('order')
-            ->with('form')
-            ->with('drug')
-            ->with('pharma');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $basket,
-            'pagination' => [
-                'pageSize' => 10,
-            ]
-        ]);
-        
-        return $this->render('send_order', ['dataProvider' => $dataProvider]);
-    }
+//    /**
+//     * SEND order.
+//     *
+//     * @return string
+//     */
+//    public function actionSend()
+//    {
+//        $basket = BasketOrder::find()->where(['session_id' => \Yii::$app->session->getId()])
+//            ->with('drugsSku')
+//            ->with('order')
+//            ->with('form')
+//            ->with('drug')
+//            ->with('pharma');
+//
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => $basket,
+//            'pagination' => [
+//                'pageSize' => 10,
+//            ]
+//        ]);
+//
+//        return $this->render('send_order', ['dataProvider' => $dataProvider]);
+//    }
 
     /**
      * Login action.
@@ -124,14 +124,13 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
 
-            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->goHome();
         }
 
@@ -141,6 +140,19 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionCard($drug_id, $dosage_id, $form_id) {
+        $drug = DrugsSku::find()->where(['drug_id' => $drug_id, 'dosage_id' => $dosage_id, 'form_id' => $form_id])
+            ->with('dosage')
+            ->with('form')
+            ->with('drug')
+            ->with('indicators')
+            ->one();
+        //d($drug);
+
+        return $this->render('card', [
+            'drug' => $drug,
+        ]);
+    }
     /**
      * registration action.
      *
@@ -157,7 +169,6 @@ class SiteController extends Controller
         ]));
         $model = new RegistrationForm();
         if ($model->load(Yii::$app->request->post()) && $model->registration()) {
-
             return $this->goHome();
         }
 

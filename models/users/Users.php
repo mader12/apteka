@@ -118,7 +118,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->pass === Yii::$app->security->generatePasswordHash($password);
+        return Yii::$app->getSecurity()->validatePassword($password, $this->pass);
     }
 
     public static function findByEmail($email)

@@ -49,6 +49,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/site/card/<drug_id:\d+>/<dosage_id:\d+>/<form_id:\d+>' => 'site/card/',
             ],
         ],
 

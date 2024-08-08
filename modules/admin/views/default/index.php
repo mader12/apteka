@@ -18,22 +18,32 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'family',
             'name',
             'surname',
             'email:email',
-            'role',
+            [
+                'attribute' => 'role',
+                'value'=> function ($model) {
+                    switch ($model->role) {
+                        case 0;
+                            return 'Гость';
+                        case 1;
+                            return 'Пользователь';
+                        case 2;
+                            return 'Админ';
+                    }
+                    return null;
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Users $model, $key, $index, $column) {
